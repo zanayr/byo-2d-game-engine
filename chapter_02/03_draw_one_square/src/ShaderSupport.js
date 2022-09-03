@@ -14,9 +14,9 @@ function loadAndComplieShader(id, shaderType) {
   // Create the shader based on the source type: vertex of fragment
   compiledShader = gGL.createShader(shaderType);
 
-  // Complie the created shader
+  // Compile the created shader
   gGL.shaderSource(compiledShader, shaderSource);
-  gGL.compiledShader(compiledShader);
+  gGL.compileShader(compiledShader);
 
   // Check for errors and return result
   if (!gGL.getShaderParameter(compiledShader, gGL.COMPILE_STATUS)) {

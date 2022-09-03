@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      html, body { background-color: rgb(218, 218, 218);}
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="640" height="480">
+      Your browser does not support the HTML5 canvas.
+    </canvas>
+    <script type="x-shader/x-vertex" id="vertex">#version 300 es
+      in vec4 a_vertex;
+      
+      void main() {
+        gl_Position = a_vertex;
+      }
+    </script>
+    <script type="x-shader/x-fragment" id="fragment">#version 300 es
+      precision mediump float;
+
+      out vec4 final;
+      
+      void main() {
+        final = vec4(1.0, 0.8, 0.8, 1.0);
+      }
+    </script>
+    <script type="module" src="./src/WebGL2.js"></script>
+  </body>
+</html>

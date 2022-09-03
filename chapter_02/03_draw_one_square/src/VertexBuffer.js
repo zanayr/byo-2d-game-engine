@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-var no-unused-vars
 "use strict";
 var gSquareVertexBuffer = null;
 
@@ -17,5 +18,5 @@ function initSquareBuffer() {
   gGL.bindBuffer(gGL.ARRAY_BUFFER, gSquareVertexBuffer);
 
   // Load verticesOfSquare into vertex buffer
-  gGL.bifferData(gGL.ARRAY_BUFFER, new Float32Array(verticesOfSquare), gGL.STATIC_DRAW);
+  gGL.bufferData(gGL.ARRAY_BUFFER, new Float32Array(verticesOfSquare), gGL.STATIC_DRAW);
 }

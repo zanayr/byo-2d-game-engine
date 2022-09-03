@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      html, body { background-color: rgb(218, 218, 218);}
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="640" height="480">
+      Your browser does not support the HTML5 canvas.
+    </canvas>
+    <script type="text/javascript">
+      const gl = document.getElementById("canvas").getContext("webgl2");
+
+      if (gl !== null) {
+        gl.clearColor(1.0, 1.0, 1.0, 1.0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+      }
+    </script>
+  </body>
+</html>
