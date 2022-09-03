@@ -1,4 +1,4 @@
-// deno-lint-ignore-file no-var
+// deno-lint-ignore-file no-var no-unused-vars
 
 function SimpleShader(vertextShaderID, fragmentShaderID) {
   // Instance variables (Convention: all instance variables: mVariables)
@@ -42,13 +42,24 @@ function SimpleShader(vertextShaderID, fragmentShaderID) {
 
 // Returns a compiled shader from a shader in the dom
 // The id is the id of the script in the html tag
-SimpleShader.prototype._loadAndCompileShader = function(id, shaderType) {
-  var shaderText, shaderSource, compiledShader;
+SimpleShader.prototype._loadAndCompileShader = function(filePath, shaderType) {
+  var shaderSource, compiledShader;
   var gl = gEngine.Core.getGL();
 
-  // Step A: Get the shader source from index.html
-  shaderText = document.getElementById(id);
-  shaderSource = shaderText.firstChild.textContent;
+  // Step A: Load the shader source with XML request
+  xmlReq = new XMLHttpRequest();
+  xmlReq.open("GET", filePath, false);
+  try {
+    xmlReq.send();
+  } catch (error) {
+    alert("Failed to load shader: " + filePath);
+    return null;
+  }
+  shaderSource = xmlReq.responseText;
+  if (shaderSource === null) {
+    alert("WARNING: Loading of: " + filePath + " failed!");
+    return null;
+  }
 
   // Step B: Create the shader based on teh shader theype: vertex of fragment
   compiledShader = gl.createShader(shaderType);
