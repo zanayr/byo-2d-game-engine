@@ -41,7 +41,7 @@ function SimpleShader(vertextShaderID, fragmentShaderID) {
     0);       // offsets to the first element
   
   // Step G: Get a reference to the uniform variable uPixelColor in the fragment shader
-  this.mPixelColor = gl.getUniformLocation(this.compileShader, "uPixelColor");
+  this.mPixelColor = gl.getUniformLocation(this.mCompiledShader, "uPixelColor");
 }
 
 // Returns a compiled shader from a shader in the dom
