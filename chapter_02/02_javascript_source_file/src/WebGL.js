@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-var no-unused-vars
 "use strict";
 var gGl = null;
 
