@@ -1,4 +1,4 @@
-# Build Your Own 2D Game Engine
+# Build Your Own 2D Game Engine and Create Great Web Games
 A small repo for projects and exercises in the book by Kevin Sung, Jebediah Pavleas, Fernando Arnez and Jason Pace.
 
-Although the JavaScript patterns and structure of this book is out of date (2015), I will try my best to keep both the original and a modernized (ES6) version of each chapter.
+They released a second edition with ES6 standards! I will be going through the chapters again and refactoring.
