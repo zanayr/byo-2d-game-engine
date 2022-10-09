@@ -1,6 +1,6 @@
 "use strict";
 import * as vertexBuffer from "./vertex_buffer.js";
-import * as simpleShader from "./shader_support.js";
+import SimpleShader from "./simple_shader.js";
 
 let mGL = null;
 function getGL() { return mGL; }
@@ -17,32 +17,31 @@ function initWebGL(htmlCanvasID) {
     document.write("<br><b>WebGL 2 is not supported!</b>");
     return;
   }
-  mGL.clearColor(0.0, 0.8, 0.0, 1.0); // set the color to be cleared
-
-  // 1. Initialize buffer with vertex positions for the unit square
-  vertexBuffer.init(); // function defined in the vertex_buffer.js
-
-  // 2. Now load and compile the vertex and fragment shaders
-  simpleShader.init("VertexShader", "FragmentShader"); // function defined in shader_support.js
-  // The two shaders are defined in the index.html file
 }
 
-function clearCanvas() {
-  mGL.clear(mGL.COLOR_BUFFER_BIT);
+function clearCanvas(color) {
+  mGL.clearColor(color[0], color[1], color[2], color[3]);
+  mGL.clear(mGL.COLOR_BUFFER_BIT); // clear to the color set
+}
+
+// The Shader
+let mShader = null;
+function createShader() {
+  mShader = new SimpleShader("VertexShader", "FragmentShader"); // IDs of the script tag in the index.html
+}
+
+function init(htmlCanvasID) {
+  initWebGL(htmlCanvasID);  // setup mGL
+  vertexBuffer.init();      // setup `mGLVertexBuffer`
+  createShader();           // create the shader
 }
 
 function drawSquare() {
   // Step A: Activate the shader
-  simpleShader.activate();
+  mShader.activate();
 
   // Step B: Draw with the above settings
   mGL.drawArrays(mGL.TRIANGLE_STRIP, 0, 4);
 }
 
-window.onload = function() {
-  initWebGL("GLCanvas");
-  clearCanvas();
-  drawSquare();
-}
-
-export { getGL }
+export { getGL, init, clearCanvas, drawSquare }
