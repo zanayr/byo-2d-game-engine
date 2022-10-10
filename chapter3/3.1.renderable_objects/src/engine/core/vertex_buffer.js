@@ -1,5 +1,5 @@
 "use strict";
-import * as core from "./core.js";
+import * as glSys from "./gl.js";
 
 let mGLVertextBuffer = null;
 function get() { return mGLVertextBuffer; }
@@ -12,7 +12,7 @@ let mVerticesOfSquare = [
 ];
 
 function init() {
-  let gl = core.getGL();
+  let gl = glSys.get();
 
   // Step A: Create a buffer on the gl context for our vertex positions
   mGLVertextBuffer = gl.createBuffer();

@@ -1,5 +1,5 @@
-import * as core from "./core.js";
-import * as vertexBuffer from "./vertex_buffer.js";
+import * as glSys from "./core/gl.js";
+import * as vertexBuffer from "./core/vertex_buffer.js";
 
 class SimpleShader {
   constructor(vertexShaderID, fragmentShaderID) {
@@ -9,7 +9,7 @@ class SimpleShader {
     this.mVertexPositionRef = null; // ref to VertexPosition in shader
     this.mPixelColorRef = null; // pixel color uniform in fragment shader
 
-    let gl = core.getGL();
+    let gl = glSys.get();
     // Step A: Load and compile vertex and fragment shaders
     this.mVertexShader = loadAndCompileShader(vertexShaderID, gl.VERTEX_SHADER);
     this.mFragmentShader = loadAndCompileShader(fragmentShaderID, gl.FRAGMENT_SHADER);
@@ -33,7 +33,7 @@ class SimpleShader {
   }
 
   activate(pixelColor) {
-    let gl = core.getGL();
+    let gl = glSys.get();
     gl.useProgram(this.mCompiledShader);
 
     // Bind vertex buffer
@@ -54,7 +54,7 @@ class SimpleShader {
 
 function loadAndCompileShader(filePath, shaderType) {
   let xmlReq, shaderSource = null, compiledShader = null;
-  let gl = core.getGL();
+  let gl = glSys.get();
 
   // Step A: Request the text from the given file location
   xmlReq = new XMLHttpRequest();
@@ -69,8 +69,6 @@ function loadAndCompileShader(filePath, shaderType) {
   if (shaderSource === null) {
     throw new Error(`WARNING: Loading of ${filePath} failed!`);
   }
-
-  console.log(shaderSource);
 
   // Step B: Create shader based on type: vertex of fragment
   compiledShader = gl.createShader(shaderType);

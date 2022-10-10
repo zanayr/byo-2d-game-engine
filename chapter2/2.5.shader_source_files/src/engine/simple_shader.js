@@ -63,8 +63,6 @@ function loadAndCompileShader(filePath, shaderType) {
     throw new Error(`WARNING: Loading of ${filePath} failed!`);
   }
 
-  console.log(shaderSource);
-
   // Step B: Create shader based on type: vertex of fragment
   compiledShader = gl.createShader(shaderType);
 
